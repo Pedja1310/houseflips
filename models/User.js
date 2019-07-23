@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 const config = require('config');
 const jwt = require('jsonwebtoken');
 
+const Propert = require('../models/Property');
+
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -21,7 +23,13 @@ const UserSchema = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.now
-  }
+  },
+  properties: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Property'
+    }
+  ]
 });
 
 UserSchema.methods.generateToken = function() {
@@ -33,4 +41,4 @@ UserSchema.methods.generateToken = function() {
   return token;
 }
 
-module.exports = User = mongoose.model('user', UserSchema);
+module.exports = User = mongoose.model('User', UserSchema);

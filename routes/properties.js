@@ -6,6 +6,7 @@ const router = express.Router();
 
 // property model
 const Property = require('../models/Property');
+const User = require('../models/User');
 
 // @route     GET api/auth
 // @desc      test route
@@ -31,8 +32,12 @@ router.post('/new', auth, async (req, res) => {
     defaultImage: '../img/mediterranean-default.jpg'
   });
 
+  
   try {
-    console.log(propertyObj);
+    await User.findOneAndUpdate(
+      { _id: req.user._id }, 
+      { $push: {properties: propertyObj._id} }
+    );
     await propertyObj.save();
     res.status(200).json(propertyObj);
   } catch (error) {

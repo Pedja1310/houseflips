@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const PropertySchema = new mongoose.Schema({
   publisher: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'user'
+    ref: 'User'
   },
   size: {
     type: Number,
@@ -36,4 +36,4 @@ const PropertySchema = new mongoose.Schema({
   }
 });
 
-module.exports = Property = mongoose.model('property', PropertySchema);
+module.exports = Property = mongoose.model('Property', PropertySchema);
