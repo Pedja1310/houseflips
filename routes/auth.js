@@ -28,8 +28,8 @@ router.post('/', [
 
     if(!match) return res.status(400).json({msg: "Invalid credentials."});
 
-    const token = user.genrateToken();
-    res.header('x-auth-token', token);
+    const token = user.generateToken();
+    res.header('x-auth-token', token).json({ msg: "Login successful."});
   } catch (error) {
     console.error(error)
     res.status(500).json({ msg: "Server error."})
