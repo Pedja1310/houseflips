@@ -36,8 +36,8 @@ router.post('/new', auth, async (req, res) => {
   try {
     await User.findOneAndUpdate(
       { _id: req.user._id }, 
-      { $push: {properties: propertyObj._id} }
-    );
+      { $push: {properties: propertyObj} }
+    ); 
     await propertyObj.save();
     res.status(200).json(propertyObj);
   } catch (error) {
@@ -46,5 +46,39 @@ router.post('/new', auth, async (req, res) => {
   }
 
 });
+
+// @route     PUT api/properties/edit/:propertyId
+// @desc      edit existing property
+// @access    private
+router.put('/edit/:propertyId', auth, async (req, res) => {
+  const { size, address, city, country } = req.body;
+
+  const updatedProperty = {};
+
+  if (size) updatedProperty.size = size;
+  if (address) updatedProperty.address = address;
+  if (city) updatedProperty.city = city;
+  if (country) updatedProperty.country = country;
+
+  try {
+    let property = await Property.findOne({ _id: req.params.propertyId });
+
+    if (!property) return res.status(400).json({ msg: "Property not found."});
+
+    
+    property = await Property.findOneAndUpdate(
+      { _id: req.params.propertyId },
+      { $set: updatedProperty },
+      { new: true }  
+    );
+
+    res.status(200).json(property);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json('Server error.')
+  }
+
+});
+
 
 module.exports = router;
