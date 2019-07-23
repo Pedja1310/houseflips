@@ -18,7 +18,28 @@ router.get('/', async (req, res) => {
 // @desc      create new property
 // @access    private
 router.post('/new', auth, async (req, res) => {
-  res.send('adsfgkjadhfg');
+
+  const { size, address, city, country, images } = req.body;
+  
+  // build property object
+  const propertyObj = new Property({
+    publisher: req.user._id,
+    size: size,
+    address: address,
+    city: city,
+    country: country,
+    defaultImage: '../img/mediterranean-default.jpg'
+  });
+
+  try {
+    console.log(propertyObj);
+    await propertyObj.save();
+    res.status(200).json(propertyObj);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({msg: "Server Error"});
+  }
+
 });
 
 module.exports = router;

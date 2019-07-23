@@ -21,6 +21,9 @@ const PropertySchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  defaultImage: {
+    type: String
+  },
   images: [
     {
       type: String,
