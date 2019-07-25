@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import ButtonAppBar from './components/layouts/Navbar'
+import Register from './components/auth/Register';
 
 // redux
 import { Provider } from 'react-redux';
@@ -10,9 +12,14 @@ import './App.css';
 function App() {
   return (
     <Provider store={store}>
-      <div className="App">
-        <h1>Front-end HouseFlips</h1>
-      </div>
+      <Router>
+        <Fragment>
+          <ButtonAppBar />
+          <Switch>
+            <Route exact path="/register" component={Register} />
+          </Switch>
+        </Fragment>
+      </Router>
     </Provider>
   );
 }
