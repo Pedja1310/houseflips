@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import { register } from "../../actions/auth";
-import setAlert from "../../actions/alert";
+import { setAlert } from "../../actions/alerts";
 
-const Register = props => {
+const Register = ({ register, setAlert }) => {
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -14,14 +16,13 @@ const Register = props => {
 
   const handleChange = e => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
-    console.log(formState);
   };
 
   const onSubmit = e => {
     e.preventDefault();
 
     if (password !== password2) {
-      console.log("Please enter matching passwords", "danger");
+      setAlert("Please enter matching passwords", "danger");
     } else {
       register({ name, email, password });
     }
@@ -30,7 +31,7 @@ const Register = props => {
   return (
     <div className="w-full max-w-xs">
       <form
-        onSubmit={e => onSubmit(e)}
+        onSubmit={onSubmit}
         className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
       >
         <div className="mb-4">
@@ -116,4 +117,12 @@ const Register = props => {
   );
 };
 
-export default Register;
+Register.propType = {
+  register: PropTypes.func.isRequired,
+  setAlert: PropTypes.func.isRequired
+};
+
+export default connect(
+  null,
+  { register, setAlert }
+)(Register);

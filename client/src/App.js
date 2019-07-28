@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import ButtonAppBar from "./components/layouts/Navbar";
 import Register from "./components/auth/Register";
-import Alert from "./components/layouts/Alert";
+import Alerts from "./components/layouts/Alerts";
 
 // redux
 import store from "./store";
@@ -16,7 +16,7 @@ function App() {
       <Router>
         <Fragment>
           <ButtonAppBar />
-          <Alert />
+          <Alerts />
           <Switch>
             <Route exact path="/register" component={Register} />
           </Switch>

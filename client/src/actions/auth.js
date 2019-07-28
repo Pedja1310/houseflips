@@ -1,21 +1,32 @@
 import axios from "axios";
+import { setAlert } from "./alerts";
+import { REGISTER_SUCCESS, REGISTER_FAIL, SET_ALERT } from "./types";
 
-export const register = async ({ name, email, password }) => {
+export const register = ({ name, email, password }) => async dispatch => {
   const config = {
     headers: {
       "content-type": "application/json"
     }
   };
-  console.log(config);
   const body = JSON.stringify({ name, email, password });
-  console.log(body);
 
   try {
-    console.log("calling");
     const res = await axios.post("/api/users", body, config);
 
     console.log(res);
+    dispatch({
+      type: REGISTER_SUCCESS,
+      payload: res.user
+    });
   } catch (error) {
-    console.error(error);
+    const err = error.response.data;
+
+    if (err) {
+      dispatch(setAlert(err, "danger"));
+    }
+
+    // dispatch({
+    //   type: REGISTER_FAIL
+    // });
   }
 };
