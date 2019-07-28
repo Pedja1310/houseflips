@@ -1,10 +1,7 @@
-import {
-  REGISTER_USER,
-  LOAD_USER
-} from '../actions/types.js';
+import { REGISTER_USER, LOAD_USER } from "../actions/types";
 
 const initialState = {
-  token: localStorage.getItem('token'),
+  token: localStorage.getItem("token"),
   isAuthenticated: false,
   loading: true,
   user: null
@@ -13,16 +10,16 @@ const initialState = {
 export default function(state = initialState, action) {
   const { payload, type } = action;
 
-  switch(type) {
+  switch (type) {
     case REGISTER_USER:
-      localStorage.setItem('token', payload.token)
+      localStorage.setItem("token", payload.token);
       return {
         ...state,
         isAuthenticated: true,
         loading: false,
         user: payload.user
-      }
-    default: 
+      };
+    default:
       return state;
   }
 }
