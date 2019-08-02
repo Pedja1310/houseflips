@@ -16,10 +16,12 @@ function App() {
       <Router>
         <Fragment>
           <ButtonAppBar />
-          <Alerts />
-          <Switch>
-            <Route exact path="/register" component={Register} />
-          </Switch>
+          <div className="container mx-auto h-screen flex justify-center items-center">
+            <Alerts />
+            <Switch>
+              <Route exact path="/register" component={Register} />
+            </Switch>
+          </div>
         </Fragment>
       </Router>
     </Provider>

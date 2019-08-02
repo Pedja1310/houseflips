@@ -29,10 +29,13 @@ const Register = ({ register, setAlert }) => {
   };
 
   return (
-    <div className="w-full max-w-xs">
+    <div className="w-full max-w-xs align-middle">
+      <div className="mb-4 px-8 pt-4">
+        <h1 className=" text-blue-500 text-4x1 font-bold">Login</h1>
+      </div>
       <form
         onSubmit={onSubmit}
-        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+        className="bg-white shadow-md rounded px-8 pb-8 mb-4"
       >
         <div className="mb-4">
           <label
