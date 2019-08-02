@@ -18,11 +18,11 @@ export const register = ({ name, email, password }) => async dispatch => {
       type: REGISTER_SUCCESS,
       payload: res.user
     });
-  } catch (error) {
-    const err = error.response.data;
+  } catch (ex) {
+    const error = ex.response.data;
 
-    if (err) {
-      dispatch(setAlert(err, "danger"));
+    if (error) {
+      error.forEach(err => dispatch(setAlert(err.msg, "danger")));
     }
 
     // dispatch({
