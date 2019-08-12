@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 
 const Form = styled.form`
   margin: 4rem auto;
+  padding: 2rem;
   width: 50%;
   background: #fff;
   border-radius: 5px;
@@ -15,12 +16,12 @@ const Form = styled.form`
 `;
 
 const Headline = styled.div`
-  padding: 1rem;
+  /* padding: 1rem; */
   color: #747d8c;
 `;
 
 const InputField = styled.div`
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
 
   & label {
@@ -43,7 +44,7 @@ const InputField = styled.div`
 
 const ButtonSection = styled.div`
   margin: 1rem auto 1.5rem auto;
-  width: 90%;
+  width: 100%;
   display: flex;
   align-items: center;
 `;
@@ -99,12 +100,18 @@ const Login = props => {
   return (
     <Form>
       <Headline>
-        <h3>Login</h3>
+        <h2>Login</h2>
       </Headline>
 
       <InputField>
         <label htmlFor="email">
-          <input type="email" name="email" id="email" placeholder="Email" />
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Email"
+            required
+          />
         </label>
       </InputField>
       <InputField>
@@ -114,6 +121,7 @@ const Login = props => {
             name="password"
             id="password"
             placeholder="Password"
+            required
           />
         </label>
       </InputField>
@@ -131,11 +139,11 @@ const Login = props => {
 //   setAlert: PropTypes.func.isRequired
 // };
 
-// const mapStateToProps = state => ({
-//   isAuthenticated: state.isAuthenticated
-// });
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth
+});
 
 export default connect(
-  null,
+  mapStateToProps,
   {}
 )(Login);

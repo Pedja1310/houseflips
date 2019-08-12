@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import { Nav } from "react-bootstrap";
 
 const HeaderBar = styled.header`
   width: 100%;
@@ -15,7 +14,7 @@ const HeaderNavigation = styled.nav`
   height: 100%;
   display: flex;
   align-items: center;
-  padding: 0 1rem;
+  padding: 0 3rem;
 `;
 
 const HeaderLogo = styled(NavLink)`

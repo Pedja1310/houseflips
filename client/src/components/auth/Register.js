@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 
 const Form = styled.form`
   margin: 4rem auto;
+  padding: 2rem;
   width: 50%;
   background: #fff;
   border-radius: 5px;
@@ -17,12 +18,11 @@ const Form = styled.form`
 `;
 
 const Headline = styled.div`
-  padding: 1rem;
   color: #747d8c;
 `;
 
 const InputField = styled.div`
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
 
   & label {
@@ -45,8 +45,8 @@ const InputField = styled.div`
 `;
 
 const ButtonSection = styled.div`
-  margin: 1rem auto 1.5rem auto;
-  width: 90%; 
+  margin: 1.5rem auto 1rem auto;
+  width: 100%; 
   display: flex;
   align-items: center;
 `;
@@ -105,9 +105,9 @@ const Register = ({ register, setAlert }) => {
   return (
     <Form onSubmit={handleSubmit}>
       <Headline>
-      <h3>
-        Create new account:
-      </h3>
+        <h2>
+          Create new account
+        </h2>
       </Headline>
 
       <InputField>
