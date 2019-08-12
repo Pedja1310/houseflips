@@ -1,17 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Alert } from "react-bootstrap";
 
 const Alerts = ({ alerts }) =>
   alerts.length > 0 &&
   alerts.map(alert => (
-    <div
-      className="flex items-center bg-blue-500 text-white text-sm font-bold px-4 py-3"
-      role="alert"
-      key={alert.id}
-    >
-      <p>{alert.msg}</p>
-    </div>
+    <Alert className="" variant={alert.type} role="alert" key={alert.id}>
+      {alert.msg}
+    </Alert>
   ));
 
 Alerts.propTypes = {

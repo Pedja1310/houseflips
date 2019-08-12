@@ -16,9 +16,10 @@ export const register = ({ name, email, password }) => async dispatch => {
     console.log(res);
     dispatch({
       type: REGISTER_SUCCESS,
-      payload: res.user
+      payload: res.data
     });
   } catch (ex) {
+    console.log(ex);
     const error = ex.response.data;
 
     if (error) {

@@ -1,8 +1,9 @@
 import React, { Fragment } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
-import Navbar from "./components/layouts/Navbar";
+import Header from "./components/layouts/Header";
 import Register from "./components/auth/Register";
+import Login from "./components/auth/Login";
 import Alerts from "./components/layouts/Alerts";
 
 // redux
@@ -15,13 +16,12 @@ function App() {
     <Provider store={store}>
       <Router>
         <Fragment>
-          <Navbar />
-          <div className="container mx-auto h-screen flex justify-center items-center">
-            <Alerts />
-            <Switch>
-              <Route exact path="/register" component={Register} />
-            </Switch>
-          </div>
+          <Header />
+          <Alerts />
+          <Switch>
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
+          </Switch>
         </Fragment>
       </Router>
     </Provider>
