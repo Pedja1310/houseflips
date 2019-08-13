@@ -18,7 +18,7 @@ const Form = styled.form`
 `;
 
 const Headline = styled.div`
-  color: #747d8c;
+  color: #33546d;
 `;
 
 const InputField = styled.div`
@@ -35,6 +35,7 @@ const InputField = styled.div`
     margin: .5rem 0;
     border: none;
     border-bottom: 1px solid #2f3542;
+    color: #33546d;
 
 
     &:active,
@@ -57,24 +58,24 @@ const Button = styled.button`
   border: 1px solid #747d8c;
   border-radius: 5px;
   color:#57606f;
-  background: #f1f2f6;
+  background: #fff;
   
   &:hover {
-    background: #57606f;
-    color: #f1f2f6;
+    background: #33546d;
+    color: #f7efed;
   }
 `;
 
 const LoginRedirect = styled(Link)`
   font-size: 1.1rem;
   font-weight: 500;
-  color: #57a0ff;
+  color: #f1485b;
   justify-content: flex-end;
   margin-left: auto;
 
   &:hover {
     text-decoration: none;
-    color: #57a0ff;
+    color: #f1485b;
   }
 `;
 

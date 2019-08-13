@@ -6,8 +6,9 @@ const HeaderBar = styled.header`
   width: 100%;
   top: 0;
   left: 0;
-  background-color: #57606f;
+  background-color: #33546d;
   height: 4rem;
+  color: #f7efed;
 `;
 
 const HeaderNavigation = styled.nav`
@@ -19,7 +20,7 @@ const HeaderNavigation = styled.nav`
 
 const HeaderLogo = styled(NavLink)`
   display: block;
-  color: #f1f2f6;
+  color: #f7efed;
   text-decoration: none;
   font-size: 1.7rem;
 
@@ -29,7 +30,7 @@ const HeaderLogo = styled(NavLink)`
   &:link,
   &:active {
     text-decoration: none;
-    color: #f1f2f6;
+    color: #f7efed;
   }
 `;
 
@@ -51,7 +52,7 @@ const NavigationItems = styled.div`
 `;
 
 const StyledLink = styled(NavLink)`
-  color: #f1f2f6;
+  color: #f7efed;
   text-decoration: none;
   text-transform: uppercase;
   font-size: 1.2rem;
@@ -62,7 +63,7 @@ const StyledLink = styled(NavLink)`
   &:link,
   &:active {
     text-decoration: none;
-    color: #f1f2f6;
+    color: #f7efed;
   }
 `;
 
