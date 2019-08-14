@@ -10,7 +10,7 @@ const Form = styled.form`
   margin: 4rem auto;
   padding: 2rem;
   width: 50%;
-  background: #fff;
+  background: ${props => props.theme.white};
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -18,7 +18,7 @@ const Form = styled.form`
 `;
 
 const Headline = styled.div`
-  color: #33546d;
+  color: ${props => props.theme.darkGrey};
 `;
 
 const InputField = styled.div`
@@ -34,8 +34,9 @@ const InputField = styled.div`
     height: 2.5rem;
     margin: .5rem 0;
     border: none;
-    border-bottom: 1px solid #2f3542;
-    color: #33546d;
+    border-bottom: 1px solid ${props => props.theme.grey3};;
+    color: ${props => props.theme.darkGrey};
+    font-weight: 400;
 
 
     &:active,
@@ -55,27 +56,27 @@ const ButtonSection = styled.div`
 const Button = styled.button`
   flex: 0 0 40%;
   height: 3rem; 
-  border: 1px solid #747d8c;
+  border: 1px solid ${props => props.theme.darkGrey};
   border-radius: 5px;
-  color:#57606f;
-  background: #fff;
+  color: ${props => props.theme.darkGrey};
+  background: ${props => props.theme.white};
   
   &:hover {
-    background: #33546d;
-    color: #f7efed;
+    background: ${props => props.theme.darkGrey};
+    color: ${props => props.theme.white};
   }
 `;
 
 const LoginRedirect = styled(Link)`
   font-size: 1.1rem;
   font-weight: 500;
-  color: #f1485b;
+  color: ${props => props.theme.red1};
   justify-content: flex-end;
   margin-left: auto;
 
   &:hover {
     text-decoration: none;
-    color: #f1485b;
+    color: ${props => props.theme.red1};
   }
 `;
 
@@ -113,22 +114,22 @@ const Register = ({ register, setAlert }) => {
 
       <InputField>
         <label htmlFor="name">
-          <input type="text" name="name" id="name" placeholder="Name"/>
+          <input type="text" name="name" id="name" placeholder="Name" onChange={handleChange} autoComplete="off" />
         </label>
       </InputField>
       <InputField>
         <label htmlFor="email">
-          <input type="email" name="email" id="email" placeholder="Email"/>
+          <input type="email" name="email" id="email" placeholder="Email" onChange={handleChange} autoComplete="off" />
         </label>
       </InputField>
       <InputField>
         <label htmlFor="password">
-          <input type="password" name="password" id="password" placeholder="Password"/>
+          <input type="password" name="password" id="password1" placeholder="Password" onChange={handleChange} />
         </label>
       </InputField>
       <InputField>
         <label htmlFor="password">
-          <input type="password" name="password" id="password" placeholder="Confirm password"/>
+          <input type="password" name="password2" id="password2" placeholder="Confirm password" onChange={handleChange} />
         </label>
       </InputField>
       <ButtonSection>

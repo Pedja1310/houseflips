@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { login } from '../../actions/auth';
+import { setAlert } from '../../actions/alerts'
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -16,8 +18,7 @@ const Form = styled.form`
 `;
 
 const Headline = styled.div`
-  /* padding: 1rem; */
-  color: #747d8c;
+  color: ${props => props.theme.darkGrey};
 `;
 
 const InputField = styled.div`
@@ -33,7 +34,7 @@ const InputField = styled.div`
     height: 2.5rem;
     margin: 0.5rem 0;
     border: none;
-    border-bottom: 1px solid #2f3542;
+    border-bottom: 1px solid ${props => props.theme.darkGrey};;
 
     &:active,
     &:focus {
@@ -52,53 +53,50 @@ const ButtonSection = styled.div`
 const Button = styled.button`
   flex: 0 0 40%;
   height: 3rem;
-  border: 1px solid #747d8c;
+  border: 1px solid ${props => props.theme.darkGrey};
   border-radius: 5px;
-  color: #57606f;
-  background: #f1f2f6;
+  background: ${props => props.theme.white};
+  color: ${props => props.theme.darkGrey};
 
   &:hover {
-    background: #57606f;
-    color: #f1f2f6;
+    background: ${props => props.theme.darkGrey};
+    color: ${props => props.theme.white};
   }
 `;
 
 const LoginRedirect = styled(Link)`
   font-size: 1.1rem;
   font-weight: 500;
-  color: #57a0ff;
+  color: ${props => props.theme.red1};;
   justify-content: flex-end;
   margin-left: auto;
 
   &:hover {
     text-decoration: none;
-    color: #57a0ff;
+    color: ${props => props.theme.red1};;
   }
 `;
 
-const Login = props => {
-  // const [formState, setFormState] = useState({
-  //   email: "",
-  //   password: ""
-  // });
+const Login = ({ login, isAuthenticated, setAlert }) => {
+  const [formState, setFormState] = useState({
+    email: "",
+    password: ""
+  });
 
-  // const { email, password } = formState;
+  const { email, password } = formState;
 
-  // const handleChange = e => {
-  //   setFormState({ ...formState, [e.target.name]: e.target.value });
-  // };
+  const handleChange = e => {
+    setFormState({ ...formState, [e.target.name]: e.target.value });
+  };
 
-  // const handleSubmit = e => {
-  //   e.preventDefault();
+  const handleSubmit = e => {
+    e.preventDefault();
 
-  //   if (password !== password2) {
-  //     setAlert("Please enter matching passwords", "danger");
-  //   } else {
-  //     login({ email, password });
-  //   }
-  // };
+    login({ email, password });
+  };
+
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <Headline>
         <h2>Login</h2>
       </Headline>
@@ -110,7 +108,9 @@ const Login = props => {
             name="email"
             id="email"
             placeholder="Email"
+            onChange={handleChange}
             required
+            autoComplete="off"
           />
         </label>
       </InputField>
@@ -121,7 +121,9 @@ const Login = props => {
             name="password"
             id="password"
             placeholder="Password"
+            onChange={handleChange}
             required
+            autoComplete="off"
           />
         </label>
       </InputField>
@@ -134,10 +136,10 @@ const Login = props => {
   );
 };
 
-// Register.propTypes = {
-//   login: PropTypes.func.isRequired,
-//   setAlert: PropTypes.func.isRequired
-// };
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
+  setAlert: PropTypes.func.isRequired
+};
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth
@@ -145,5 +147,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  {}
+  { login, setAlert }
 )(Login);

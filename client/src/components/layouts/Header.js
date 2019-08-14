@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
@@ -6,9 +6,9 @@ const HeaderBar = styled.header`
   width: 100%;
   top: 0;
   left: 0;
-  background-color: #33546d;
+  background-color: ${props => props.theme.darkGrey};
   height: 4rem;
-  color: #f7efed;
+  color: ${props => props.theme.white};
 `;
 
 const HeaderNavigation = styled.nav`
@@ -20,9 +20,9 @@ const HeaderNavigation = styled.nav`
 
 const HeaderLogo = styled(NavLink)`
   display: block;
-  color: #f7efed;
+  color: ${props => props.theme.white};
   text-decoration: none;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
 
   &:focus,
   &:hover,
@@ -30,7 +30,7 @@ const HeaderLogo = styled(NavLink)`
   &:link,
   &:active {
     text-decoration: none;
-    color: #f7efed;
+    color: ${props => props.theme.white};
   }
 `;
 
@@ -52,7 +52,7 @@ const NavigationItems = styled.div`
 `;
 
 const StyledLink = styled(NavLink)`
-  color: #f7efed;
+  color: ${props => props.theme.white};
   text-decoration: none;
   text-transform: uppercase;
   font-size: 1.2rem;
@@ -63,7 +63,7 @@ const StyledLink = styled(NavLink)`
   &:link,
   &:active {
     text-decoration: none;
-    color: #f7efed;
+    color: ${props => props.theme.white};
   }
 `;
 
