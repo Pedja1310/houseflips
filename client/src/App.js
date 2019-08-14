@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Normalize } from "styled-normalize";
 import { Provider } from "react-redux";
@@ -13,8 +13,14 @@ import GlobalStyle from "./components/globalStyles/GlobalStyle";
 import store from "./store";
 
 import theme from "./components/globalStyles/theme";
+import { loadUser } from "./actions/auth";
 
 function App() {
+  // Load user on first load if there is token
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
+
   return (
     <Provider store={store}>
       <Router>

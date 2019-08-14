@@ -3,9 +3,38 @@ import { setAlert } from "./alerts";
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
+  LOAD_USER,
   SET_ALERT,
   LOGIN_SUCCESS
 } from "./types";
+import setAuthToken from "../utils/setAuthToken";
+
+export const loadUser = () => async dispatch => {
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+  }
+
+  try {
+    const res = await axios.get("/api/auth");
+    console.log(res);
+
+    dispatch({
+      type: LOAD_USER,
+      payload: res.data
+    });
+  } catch (ex) {
+    const error = ex.response.data;
+    console.log(error);
+
+    if (error) {
+      error.forEach(err => dispatch(setAlert(err.msg, "danger")));
+    }
+
+    dispatch({
+      type: REGISTER_FAIL
+    });
+  }
+};
 
 export const register = ({ name, email, password }) => async dispatch => {
   const config = {
@@ -51,6 +80,8 @@ export const login = ({ email, password }) => async dispatch => {
       type: LOGIN_SUCCESS,
       payload: res.data
     });
+
+    dispatch(loadUser());
   } catch (ex) {
     console.log(ex);
     const error = ex.response.data;
