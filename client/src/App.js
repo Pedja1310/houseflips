@@ -18,7 +18,9 @@ import { loadUser } from "./actions/auth";
 function App() {
   // Load user on first load if there is token
   useEffect(() => {
-    store.dispatch(loadUser());
+    if (localStorage.token) {
+      store.dispatch(loadUser());
+    }
   }, []);
 
   return (
