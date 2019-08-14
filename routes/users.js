@@ -40,7 +40,9 @@ router.post('/', [
     await user.save();
 
     const token = user.generateToken();
-    res.header('x-auth-token', token).send(_.pick(user, ['_id', 'name', 'email']));
+    // res.header('x-auth-token', token).send(_.pick(user, ['_id', 'name', 'email']));
+    
+    res.json({token});
   } catch (error) {
     console.error(error);
     res.status(500).json({msg: 'Server error.'})
