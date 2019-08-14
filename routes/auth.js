@@ -15,21 +15,23 @@ router.post('/', [
 ], async (req, res) => {
   const errors = validationResult(req);
 
-  if(!errors.isEmpty()) return res.status(400).json({ msg: errors.array() });
-  
+  if(!errors.isEmpty()) {
+    return res.status(400).json(errors.array())
+  };
+
   const { email, password } = req.body;
 
   try {
     let user = await User.findOne({ email });
     
-    if(!user) return res.status(400).json({ msg: "User not found."});
+    if(!user) return res.status(400).json([{ msg: "User not found."}]);
 
-    const match = bcrypt.compare(password, user.password);
+    const match = await bcrypt.compare(password, user.password);
 
-    if(!match) return res.status(400).json({msg: "Invalid credentials."});
+    if(!match) return res.status(400).json([{msg: "Invalid credentials."}]);
 
     const token = user.generateToken();
-    res.header('x-auth-token', token).json({ msg: "Login successful."});
+    res.json({token});
   } catch (error) {
     console.error(error)
     res.status(500).json({ msg: "Server error."})
