@@ -36,7 +36,7 @@ UserSchema.methods.generateToken = function() {
   const token = jwt.sign( 
     {_id: this._id},
     config.get('jwtsecret'),
-    {expiresIn: 36000},
+    {expiresIn: '24h'},
   )
   return token;
 }

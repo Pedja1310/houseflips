@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const _ = require('lodash');
 const { check, validationResult } = require('express-validator');
+const auth = require('../middleware/auth');
 
 const User = require('../models/User');
 
@@ -34,9 +35,22 @@ router.post('/', [
     res.json({token});
   } catch (error) {
     console.error(error)
-    res.status(500).json({ msg: "Server error."})
+    res.status(500).json([{ msg: "Server error."}])
   }
-
 });
+
+// @route     GET api/auth
+// @desc      Get user from token
+// @access    Public
+router.get('/', auth, async (req, res) => {
+  const { _id } = req.user;
+  try {
+    const user = await User.findById(_id).select('-password');
+    res.json(user)
+  } catch(err) {
+    console.log(err.message);
+      res.status(500).send([{ msg: 'Server error.' }]);
+  }});
+
 
 module.exports = router;
