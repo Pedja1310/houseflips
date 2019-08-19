@@ -4,6 +4,7 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   LOAD_USER,
+  LOGOUT_USER,
   SET_ALERT,
   LOGIN_SUCCESS
 } from "./types";
@@ -94,4 +95,10 @@ export const login = ({ email, password }) => async dispatch => {
       type: REGISTER_FAIL
     });
   }
+};
+
+export const logout = () => dispatch => {
+  dispatch({
+    type: LOGOUT_USER
+  });
 };

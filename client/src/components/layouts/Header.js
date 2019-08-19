@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { logout } from "../../actions/auth";
 
 const HeaderBar = styled.header`
   width: 100%;
@@ -66,35 +69,88 @@ const StyledLink = styled(NavLink)`
     color: ${props => props.theme.white};
   }
 `;
+const LogoutLink = styled.a`
+  color: ${props => props.theme.white};
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1.2rem;
 
-function Header() {
+  &:focus,
+  &:hover,
+  &:visited,
+  &:link,
+  &:active {
+    text-decoration: none;
+    color: ${props => props.theme.white};
+  }
+`;
+
+const Header = ({ isAuthenticated, logout }) => {
+  const guestLinks = (
+    <NavigationItems>
+      <ul>
+        <li>
+          <StyledLink exact to="/market">
+            Market
+          </StyledLink>
+        </li>
+        <li>
+          <StyledLink exact to="/register">
+            Signup
+          </StyledLink>
+        </li>
+        <li>
+          <StyledLink exact to="/login">
+            Login
+          </StyledLink>
+        </li>
+      </ul>
+    </NavigationItems>
+  );
+
+  const userLinks = (
+    <NavigationItems>
+      <ul>
+        <li>
+          <StyledLink exact to="/market">
+            Market
+          </StyledLink>
+        </li>
+        <li>
+          <StyledLink exact to="/portfolio">
+            Portfolio
+          </StyledLink>
+        </li>
+        <li>
+          <LogoutLink href="#" onClick={logout}>
+            Logout
+          </LogoutLink>
+        </li>
+      </ul>
+    </NavigationItems>
+  );
+
   return (
     <HeaderBar>
       <HeaderNavigation>
         <HeaderLogo to="/">HouseFlips</HeaderLogo>
         <SpacerDiv />
-        <NavigationItems>
-          <ul>
-            <li>
-              <StyledLink exact to="/market">
-                Market
-              </StyledLink>
-            </li>
-            <li>
-              <StyledLink exact to="/register">
-                Signup
-              </StyledLink>
-            </li>
-            <li>
-              <StyledLink exact to="/login">
-                Login
-              </StyledLink>
-            </li>
-          </ul>
-        </NavigationItems>
+        {isAuthenticated ? userLinks : guestLinks}
       </HeaderNavigation>
     </HeaderBar>
   );
-}
+};
 
-export default Header;
+Header.propTypes = {
+  logout: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired
+};
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(
+  mapStateToProps,
+  { logout }
+)(Header);
