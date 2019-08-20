@@ -5,7 +5,6 @@ import {
   REGISTER_FAIL,
   LOAD_USER,
   LOGOUT_USER,
-  SET_ALERT,
   LOGIN_SUCCESS
 } from "./types";
 import setAuthToken from "../utils/setAuthToken";
