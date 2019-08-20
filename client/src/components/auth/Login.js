@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { login } from '../../actions/auth';
 import { setAlert } from '../../actions/alerts'
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 const Form = styled.form`
@@ -95,6 +95,10 @@ const Login = ({ login, isAuthenticated, setAlert }) => {
     login({ email, password });
   };
 
+  if(isAuthenticated) {
+    return <Redirect to="/portfolio" />
+  }
+
   return (
     <Form onSubmit={handleSubmit}>
       <Headline>
@@ -142,7 +146,7 @@ Login.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth
+  isAuthenticated: state.auth.isAuthenticated
 });
 
 export default connect(
