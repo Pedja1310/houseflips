@@ -35,7 +35,7 @@ function App() {
             <Header />
             <div
               className="container"
-              style={{ maxWidth: "1200px", padding: "0" }}
+              style={{ maxWidth: "1200px", padding: "2rem" }}
             >
               <Alerts />
               <Switch>

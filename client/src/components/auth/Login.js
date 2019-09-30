@@ -7,7 +7,7 @@ import { login } from "../../actions/auth";
 import { setAlert } from "../../actions/alerts";
 
 const Form = styled.form`
-  margin: 4rem auto;
+  margin: 2rem auto;
   padding: 2rem;
   width: 50%;
   background: #fff;

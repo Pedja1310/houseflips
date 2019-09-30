@@ -8,12 +8,10 @@ import Spinner from "../layouts/Spinner";
 const Portfolio = ({ auth: { user, loading } }) => {
   const PortfolioContainer = styled.div`
     width: 100%;
-    padding: 2rem 2rem;
   `;
 
   const PortfolioHeader = styled.div`
     height: 3rem;
-    padding: 1rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
