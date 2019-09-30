@@ -52,6 +52,10 @@ const NavigationItems = styled.div`
   li {
     padding: 0 0.5rem;
   }
+
+  li:last-child {
+    padding-right: 0rem;
+  }
 `;
 
 const StyledLink = styled(NavLink)`
@@ -69,6 +73,7 @@ const StyledLink = styled(NavLink)`
     color: ${props => props.theme.white};
   }
 `;
+
 const LogoutLink = styled.a`
   color: ${props => props.theme.white};
   text-decoration: none;

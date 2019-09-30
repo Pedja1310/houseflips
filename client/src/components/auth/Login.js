@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { login } from '../../actions/auth';
-import { setAlert } from '../../actions/alerts'
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import { login } from "../../actions/auth";
+import { setAlert } from "../../actions/alerts";
 
 const Form = styled.form`
   margin: 4rem auto;
@@ -34,7 +34,7 @@ const InputField = styled.div`
     height: 2.5rem;
     margin: 0.5rem 0;
     border: none;
-    border-bottom: 1px solid ${props => props.theme.darkGrey};;
+    border-bottom: 1px solid ${props => props.theme.darkGrey};
 
     &:active,
     &:focus {
@@ -67,17 +67,17 @@ const Button = styled.button`
 const LoginRedirect = styled(Link)`
   font-size: 1.1rem;
   font-weight: 500;
-  color: ${props => props.theme.red1};;
+  color: ${props => props.theme.red1};
   justify-content: flex-end;
   margin-left: auto;
 
   &:hover {
     text-decoration: none;
-    color: ${props => props.theme.red1};;
+    color: ${props => props.theme.red1};
   }
 `;
 
-const Login = ({ login, isAuthenticated, setAlert }) => {
+const Login = ({ login, isAuthenticated, user }) => {
   const [formState, setFormState] = useState({
     email: "",
     password: ""
@@ -95,8 +95,8 @@ const Login = ({ login, isAuthenticated, setAlert }) => {
     login({ email, password });
   };
 
-  if(isAuthenticated) {
-    return <Redirect to="/portfolio" />
+  if (isAuthenticated && user) {
+    return <Redirect to="/portfolio" />;
   }
 
   return (
@@ -146,7 +146,8 @@ Login.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
+  user: state.auth.user
 });
 
 export default connect(
