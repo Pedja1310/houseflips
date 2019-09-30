@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import styled from 'styled-components';
 import { register } from "../../actions/auth";
 import { setAlert } from "../../actions/alerts";
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 const Form = styled.form`
   margin: 4rem auto;
@@ -80,7 +80,7 @@ const LoginRedirect = styled(Link)`
   }
 `;
 
-const Register = ({ register, setAlert }) => {
+const Register = ({ register, setAlert, isAuthenticated, user }) => {
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -103,6 +103,10 @@ const Register = ({ register, setAlert }) => {
       register({ name, email, password });
     }
   };
+
+  if (isAuthenticated && user) {
+    return <Redirect to="/portfolio" />;
+  }
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -146,7 +150,8 @@ Register.propType = {
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.isAuthenticated,
+  isAuthenticated: state.auth.isAuthenticated,
+  user: state.auth.user
 });
 
 export default connect(
