@@ -5,6 +5,14 @@ const PropertySchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
+  type: {
+    type: String,
+    required: true
+  },
+  price: {
+    type: Number,
+    required: true
+  },
   size: {
     type: Number,
     required: true
@@ -21,6 +29,19 @@ const PropertySchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  numOfRooms: {
+    type: Number,
+    required: true
+  },
+  numOfBaths: {
+    type: Number,
+    requred: true
+  },
+  utilities: [
+    {
+      type: String
+    }
+  ],
   defaultImage: {
     type: String
   },
