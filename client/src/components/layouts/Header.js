@@ -10,7 +10,7 @@ const HeaderBar = styled.header`
   top: 0;
   left: 0;
   background-color: ${props => props.theme.white};
-  height: 8vh;
+  height: 4rem;
   color: ${props => props.theme.darkGrey};
   border-bottom: 1px solid ${props => props.theme.grey1};
 `;
