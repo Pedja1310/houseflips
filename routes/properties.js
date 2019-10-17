@@ -9,10 +9,19 @@ const Property = require('../models/Property');
 const User = require('../models/User');
 
 // @route     GET api/auth
-// @desc      test route
+// @desc      get all prperties
 // @access    Public
 router.get('/', async (req, res) => {
-  res.status(200).send('looking good');
+  try {
+    const properties = await Property.find();
+
+    if (properties.length == 0) return res.status(200).json({msg: "Property list is currently empty."});
+    
+    res.status(200).json(properties);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({msg: "Server Error"})
+  }
 });
 
 // @route     POST api/properties
@@ -20,7 +29,7 @@ router.get('/', async (req, res) => {
 // @access    private
 router.post('/new', auth, async (req, res) => {
 
-  const { size, address, city, country, images } = req.body;
+  const { size, address, city, country, images, utilities, numOfRooms, numOfBaths, type, price } = req.body;
   
   // build property object
   const propertyObj = new Property({
@@ -29,6 +38,11 @@ router.post('/new', auth, async (req, res) => {
     address: address,
     city: city,
     country: country,
+    utilities: [...utilities],
+    numOfBaths: numOfBaths,
+    numOfRooms: numOfRooms,
+    type: type,
+    price: price,
     defaultImage: '../img/mediterranean-default.jpg'
   });
 
@@ -72,7 +86,7 @@ router.get('/:propertyId', async (req, res) => {
 // @desc      edit existing property
 // @access    private
 router.put('/edit/:propertyId', auth, async (req, res) => {
-  const { size, address, city, country } = req.body;
+  const { size, address, city, country, numOfBaths, numOfRooms, utilities, type } = req.body;
 
   const updatedProperty = {};
 
@@ -80,6 +94,10 @@ router.put('/edit/:propertyId', auth, async (req, res) => {
   if (address) updatedProperty.address = address;
   if (city) updatedProperty.city = city;
   if (country) updatedProperty.country = country;
+  if (numOfRooms) updatedProperty.numOfRooms = numOfRooms; 
+  if (numOfBaths) updatedProperty.numOfBaths = numOfBaths; 
+  if (type) updatedProperty.type = type; 
+  if (price) updatedProperty.price = price;
 
   try {
     let property = await Property.findOne({ _id: req.params.propertyId });
@@ -92,7 +110,7 @@ router.put('/edit/:propertyId', auth, async (req, res) => {
     
     property = await Property.findOneAndUpdate(
       { _id: req.params.propertyId },
-      { $set: updatedProperty },
+      { $set: updatedProperty, utilities},
       { new: true }  
     );
 
