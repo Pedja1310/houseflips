@@ -9,7 +9,7 @@ import AddProperty from "../properties/AddProperty";
 
 const Routes = () => {
   return (
-    <div className="container" style={{ maxWidth: "1200px", padding: "2rem" }}>
+    <div className="container" style={{ maxWidth: "1200px" }}>
       <Alerts />
       <Switch>
         <Route exact path="/register" component={Register} />
