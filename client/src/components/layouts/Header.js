@@ -9,9 +9,10 @@ const HeaderBar = styled.header`
   width: 100%;
   top: 0;
   left: 0;
-  background-color: ${props => props.theme.darkGrey};
-  height: 4rem;
-  color: ${props => props.theme.white};
+  background-color: ${props => props.theme.white};
+  height: 8vh;
+  color: ${props => props.theme.darkGrey};
+  border-bottom: 1px solid ${props => props.theme.grey1};
 `;
 
 const HeaderNavigation = styled.nav`
@@ -23,7 +24,7 @@ const HeaderNavigation = styled.nav`
 
 const HeaderLogo = styled(NavLink)`
   display: block;
-  color: ${props => props.theme.white};
+  color: ${props => props.theme.darkGrey};
   text-decoration: none;
   font-size: 1.5rem;
 
@@ -33,7 +34,7 @@ const HeaderLogo = styled(NavLink)`
   &:link,
   &:active {
     text-decoration: none;
-    color: ${props => props.theme.white};
+    color: ${props => props.theme.darkGrey};
   }
 `;
 
@@ -59,7 +60,7 @@ const NavigationItems = styled.div`
 `;
 
 const StyledLink = styled(NavLink)`
-  color: ${props => props.theme.white};
+  color: ${props => props.theme.darkGrey};
   text-decoration: none;
   text-transform: uppercase;
   font-size: 1.2rem;
@@ -70,12 +71,12 @@ const StyledLink = styled(NavLink)`
   &:link,
   &:active {
     text-decoration: none;
-    color: ${props => props.theme.white};
+    color: ${props => props.theme.darkGrey};
   }
 `;
 
 const LogoutLink = styled.a`
-  color: ${props => props.theme.white};
+  color: ${props => props.theme.darkGrey};
   text-decoration: none;
   text-transform: uppercase;
   font-size: 1.2rem;
@@ -86,7 +87,7 @@ const LogoutLink = styled.a`
   &:link,
   &:active {
     text-decoration: none;
-    color: ${props => props.theme.white};
+    color: ${props => props.theme.darkGrey};
   }
 `;
 
