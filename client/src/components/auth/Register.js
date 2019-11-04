@@ -9,7 +9,7 @@ import { Link, Redirect } from 'react-router-dom';
 const Form = styled.form`
   margin: 2rem auto;
   padding: 2rem;
-  width: 50%;
+  width: 40%;
   background: ${props => props.theme.white};
   border-radius: 5px;
   display: flex;
@@ -54,7 +54,7 @@ const ButtonSection = styled.div`
 `;
 
 const Button = styled.button`
-  flex: 0 0 40%;
+  flex: 0 0 30%;
   height: 3rem; 
   border: 1px solid ${props => props.theme.darkGrey};
   border-radius: 5px;

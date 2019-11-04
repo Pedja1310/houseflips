@@ -15,7 +15,7 @@ const PropertySchema = new mongoose.Schema({
   },
   size: {
     type: Number,
-    required: true
+    // required: true
   },
   address: {
     type: String,
@@ -32,10 +32,6 @@ const PropertySchema = new mongoose.Schema({
   numOfRooms: {
     type: Number,
     required: true
-  },
-  numOfBaths: {
-    type: Number,
-    requred: true
   },
   utilities: [
     {

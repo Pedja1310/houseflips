@@ -15,6 +15,9 @@ import store from "./store";
 import theme from "./components/globalStyles/theme";
 import { loadUser } from "./actions/auth";
 
+// evn variables
+// require("dotenv").config();
+
 function App() {
   // Load user on first load if there is token
   useEffect(() => {

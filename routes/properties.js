@@ -34,19 +34,18 @@ router.post('/new', auth, async (req, res) => {
   // build property object
   const propertyObj = new Property({
     publisher: req.user._id,
-    size: size,
+    // size: size,
     address: address,
     city: city,
     country: country,
     utilities: [...utilities],
-    numOfBaths: numOfBaths,
+    images: [...images],
     numOfRooms: numOfRooms,
     type: type,
     price: price,
     defaultImage: '../img/mediterranean-default.jpg'
   });
 
-  
   try {
     await User.findOneAndUpdate(
       { _id: req.user._id }, 

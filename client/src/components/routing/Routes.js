@@ -5,7 +5,7 @@ import Login from "../auth/Login";
 import Portfolio from "../portfolio/Portfolio";
 import PrivateRoute from "./PrivateRoute";
 import Alerts from "../layouts/Alerts";
-import AddProperty from "../properties/AddProperty";
+import PropertyForm from "../properties/PropertyForm";
 
 const Routes = () => {
   return (
@@ -15,7 +15,7 @@ const Routes = () => {
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
         <PrivateRoute exact path="/portfolio" component={Portfolio} />
-        <PrivateRoute exact path="/add-property" component={AddProperty} />
+        <PrivateRoute exact path="/add-property" component={PropertyForm} />
       </Switch>
     </div>
   );
